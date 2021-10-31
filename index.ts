@@ -1,5 +1,10 @@
-console.log("Hello World!");
-console.log("Test debugger");
+import { FileReader } from "./src/file.reader";
+
+let file = new FileReader();
+file.getFile();
+
+console.log("End program");
+
 /*import readline = require('readline');
 
 let userInput = readline.createInterface({input: process.stdin, output: process.stdout});

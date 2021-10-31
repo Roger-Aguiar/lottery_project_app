@@ -1,5 +1,9 @@
-console.log("Hello World!");
-console.log("Test debugger");
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var file_reader_1 = require("./src/file.reader");
+var file = new file_reader_1.FileReader();
+file.getFile();
+console.log("End program");
 /*import readline = require('readline');
 
 let userInput = readline.createInterface({input: process.stdin, output: process.stdout});
