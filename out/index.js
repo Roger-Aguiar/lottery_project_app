@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var file_reader_1 = require("./src/file.reader");
-var file = new file_reader_1.FileReader();
-file.getFile();
-console.log("End program");
+var lottery_1 = require("./src/lottery");
+var newGame = new lottery_1.Lottery();
+var results = newGame.generateNewGame();
+console.log('test');
 /*import readline = require('readline');
 
 let userInput = readline.createInterface({input: process.stdin, output: process.stdout});

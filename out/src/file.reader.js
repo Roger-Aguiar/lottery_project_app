@@ -1,22 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FileReader = void 0;
-var fs_1 = require("fs");
+exports.results = exports.FileReader = void 0;
+var file_reader_constants_1 = require("../constants/file.reader.constants");
 var FileReader = /** @class */ (function () {
     function FileReader() {
     }
     FileReader.prototype.getFile = function () {
-        (0, fs_1.readFile)('files/lotofacil.txt', function (err, data) {
+        var results = [];
+        file_reader_constants_1.file_system.readFile('files/lotofacil.txt', function (err, data) {
             if (err)
                 throw err;
             var array = data.toString().replace(/\n/g, '\n').split('\n');
-            for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
-                var line = array_1[_i];
-                console.log(line);
+            for (var index = 0; index < array.length; index++) {
+                results.push(array[index]);
             }
         });
+        return results;
     };
     return FileReader;
 }());
 exports.FileReader = FileReader;
+exports.results = file_reader_constants_1.file_system.readFile('files/lotofacil.txt', function (err, data) {
+    if (err)
+        throw err;
+    var array = data.toString().replace(/\n/g, '\n').split('\n');
+    for (var index = 0; index < array.length; index++) {
+        console.log(array[index]);
+    }
+});
 //# sourceMappingURL=file.reader.js.map

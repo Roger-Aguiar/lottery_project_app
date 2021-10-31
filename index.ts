@@ -1,9 +1,17 @@
-import { FileReader } from "./src/file.reader";
+import { Lottery } from "./src/lottery";
+import { file_system } from "./constants/lottery.constants";
 
-let file = new FileReader();
-file.getFile();
+let newGame = new Lottery();
 
-console.log("End program");
+file_system.readFile('files/lotofacil.txt', (err, data) => 
+{
+    if (err) throw err;
+
+    const results = data.toString().replace(/\n/g, '\n').split('\n');
+    newGame.getSimpleFrequencyTable(results);
+});
+
+
 
 /*import readline = require('readline');
 
