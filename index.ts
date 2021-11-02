@@ -8,7 +8,7 @@ file_system.readFile('files/lotofacil.txt', (err, data) =>
     const results = data.toString().replace(/\n/g, '\n').split('\n');
     let newGame = new Statistic (results, 1, 25);
     let frequencyTable = newGame.getFrequencyTable();
-    
+
     console.log(newGame.getLayoutFrequencyTable());
 });
 

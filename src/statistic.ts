@@ -19,8 +19,7 @@ export class Statistic
         while(this.firstNumber <= this.lastNumber)
         {
             let frequency = 0;            
-            let currentIndex = 0;
-
+            
             for(let index = 0; index < this.results.length; index++)
             {                                
                 let array = this.results[index].split('\t').sort();
@@ -62,7 +61,7 @@ export class Statistic
     {        
         for (let index = 0; index < this.frequencyTable.length; index++) 
         {
-            this.frequencyTable[index].accumulatedFrequency = index == 0 ? Number(this.frequencyTable[index].relativeFrequency) : 
+            this.frequencyTable[index].accumulatedFrequency = index == 0 ? Number(this.frequencyTable[index].relativeFrequency).toFixed(2) : 
             (Number(this.frequencyTable[index].relativeFrequency) + 
              Number(this.frequencyTable[index - 1].accumulatedFrequency)).toFixed(2);                           
         }
@@ -77,8 +76,8 @@ export class Statistic
         {
             layoutTable += '|' + this.frequencyTable[index].number + '\t' +
                            '|\t' + this.frequencyTable[index].frequencyNumber + '\t' + 
-                           '|\t' + this.frequencyTable[index].relativeFrequency + '\t' + 
-                           '|\t' + this.frequencyTable[index].accumulatedFrequency + '\t|\n' +
+                           '|\t' + this.frequencyTable[index].relativeFrequency + ' %\t' + 
+                           '|\t' + this.frequencyTable[index].accumulatedFrequency + '%\t|\n' +
                            '---------------------------------------------------------\n';
         }
 
@@ -87,8 +86,8 @@ export class Statistic
 
         layoutTable += '\nTable description\n' + 
                        'N(i):  Frequency of each number\n' + 
-                       'F(i):  Relative frequency of each number (%)\n' +
-                       'F(ac): Accumulated frequency (%)';
+                       'F(i):  Relative frequency of each number\n' +
+                       'F(ac): Accumulated frequency';
 
         return layoutTable;
     }
