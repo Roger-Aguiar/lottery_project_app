@@ -14,7 +14,6 @@ var Statistic = /** @class */ (function () {
     Statistic.prototype.getFrequencyTable = function () {
         while (this.firstNumber <= this.lastNumber) {
             var frequency = 0;
-            var currentIndex = 0;
             for (var index = 0; index < this.results.length; index++) {
                 var array = this.results[index].split('\t').sort();
                 for (var indexArray = 0; indexArray < array.length; indexArray++) {
@@ -41,7 +40,7 @@ var Statistic = /** @class */ (function () {
     };
     Statistic.prototype.getAccumulatedFrequency = function () {
         for (var index = 0; index < this.frequencyTable.length; index++) {
-            this.frequencyTable[index].accumulatedFrequency = index == 0 ? Number(this.frequencyTable[index].relativeFrequency) :
+            this.frequencyTable[index].accumulatedFrequency = index == 0 ? Number(this.frequencyTable[index].relativeFrequency).toFixed(2) :
                 (Number(this.frequencyTable[index].relativeFrequency) +
                     Number(this.frequencyTable[index - 1].accumulatedFrequency)).toFixed(2);
         }
@@ -52,17 +51,17 @@ var Statistic = /** @class */ (function () {
         for (var index = 0; index < this.frequencyTable.length; index++) {
             layoutTable += '|' + this.frequencyTable[index].number + '\t' +
                 '|\t' + this.frequencyTable[index].frequencyNumber + '\t' +
-                '|\t' + this.frequencyTable[index].relativeFrequency + '\t' +
-                '|\t' + this.frequencyTable[index].accumulatedFrequency + '\t|\n' +
+                '|\t' + this.frequencyTable[index].relativeFrequency + ' %\t' +
+                '|\t' + this.frequencyTable[index].accumulatedFrequency + '%\t|\n' +
                 '---------------------------------------------------------\n';
         }
         layoutTable += '|Total\t|\t' + this.results.length + '\t|\t' + this.totalFI + '\t|\t\t|\n' +
             '---------------------------------------------------------\n';
         layoutTable += '\nTable description\n' +
             'N(i):  Frequency of each number\n' +
-            'F(i):  Relative frequency of each number (%)\n' +
-            'F(ac): Accumulated frequency (%)';
-        return Buffer.from(layoutTable);
+            'F(i):  Relative frequency of each number\n' +
+            'F(ac): Accumulated frequency';
+        return layoutTable;
     };
     Statistic.prototype.sortFrequencyTable = function () {
         return this.frequencyTable.sort(function (a, b) {

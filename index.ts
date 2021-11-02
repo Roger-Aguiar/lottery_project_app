@@ -1,16 +1,23 @@
 import { Statistic } from "./src/statistic";
 import { file_system } from "./constants/lottery.constants";
-
-file_system.readFile('files/lotofacil.txt', (err, data) => 
+import { Lottery } from "./src/lottery";
+function main() 
 {
-    if (err) throw err;
+    file_system.readFile('files/lotofacil.txt', (err, data) => 
+    {
+        if (err) throw err;
 
-    const results = data.toString().replace(/\n/g, '\n').split('\n');
-    let newGame = new Statistic (results, 1, 25);
-    let frequencyTable = newGame.getFrequencyTable();
+        const results = data.toString().replace(/\n/g, '\n').split('\n');
+        let newGame = new Statistic (results, 1, 25);
+        let frequencyTable = newGame.getFrequencyTable();
+        let games = new Lottery(frequencyTable, 15);
+        games.generateGames();
+        console.log(games.getLayoutGames());
+        
+    });
+}
 
-    console.log(newGame.getLayoutFrequencyTable());
-});
+main();
 
 
 
