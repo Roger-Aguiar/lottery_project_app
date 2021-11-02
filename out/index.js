@@ -1,9 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var lottery_1 = require("./src/lottery");
-var newGame = new lottery_1.Lottery();
-var results = newGame.generateNewGame();
-console.log('test');
+var statistic_1 = require("./src/statistic");
+var lottery_constants_1 = require("./constants/lottery.constants");
+lottery_constants_1.file_system.readFile('files/lotofacil.txt', function (err, data) {
+    if (err)
+        throw err;
+    var results = data.toString().replace(/\n/g, '\n').split('\n');
+    var newGame = new statistic_1.Statistic(results, 1, 25);
+    var frequencyTable = newGame.getFrequencyTable();
+    newGame.getLayoutFrequencyTable();
+});
 /*import readline = require('readline');
 
 let userInput = readline.createInterface({input: process.stdin, output: process.stdout});

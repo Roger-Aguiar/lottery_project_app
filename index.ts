@@ -1,14 +1,15 @@
-import { Lottery } from "./src/lottery";
+import { Statistic } from "./src/statistic";
 import { file_system } from "./constants/lottery.constants";
-
-let newGame = new Lottery();
 
 file_system.readFile('files/lotofacil.txt', (err, data) => 
 {
     if (err) throw err;
 
     const results = data.toString().replace(/\n/g, '\n').split('\n');
-    newGame.getSimpleFrequencyTable(results);
+    let newGame = new Statistic (results, 1, 25);
+    let frequencyTable = newGame.getFrequencyTable();
+    
+    console.log(newGame.getLayoutFrequencyTable());
 });
 
 
