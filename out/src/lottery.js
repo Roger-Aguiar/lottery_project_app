@@ -31,6 +31,23 @@ var Lottery = /** @class */ (function () {
         }
         return layout;
     };
+    Lottery.prototype.checkGames = function (result) {
+        result.sort();
+        var layoutResult = '';
+        for (var i = 0; i < this.tableOfGames.length; i++) {
+            var score = 0;
+            for (var j = 0; j < this.tableOfGames[i].length; j++) {
+                for (var k = 0; k < result.length; k++) {
+                    if (this.tableOfGames[i][j] == result[k]) {
+                        score++;
+                        break;
+                    }
+                }
+            }
+            layoutResult += 'Game ' + (i + 1) + ': ' + score + 'points.\n';
+        }
+        return layoutResult;
+    };
     return Lottery;
 }());
 exports.Lottery = Lottery;

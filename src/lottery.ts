@@ -4,6 +4,7 @@ export class Lottery
     quantityOfNumbers: number;
     gameCounter = 0;
     tableOfGames = [];
+    
 
     constructor(frequencyTable, quantityOfNumbers)
     {
@@ -11,7 +12,7 @@ export class Lottery
         this.quantityOfNumbers = quantityOfNumbers;
     }
 
-    generateGames()
+    generateGamesBasedOnAccumulatedFrequency()
     {           
         while(this.frequencyTable.length > 15)
         {
@@ -40,5 +41,30 @@ export class Lottery
             layout += '\n';
         }
         return layout;
+    }
+
+    checkGames(result: string[])
+    {
+        result.sort();
+
+        let layoutResult = '';
+        
+        for (let i = 0; i < this.tableOfGames.length; i++) 
+        {
+            let score = 0;
+            for (let j = 0; j < this.tableOfGames[i].length; j++) 
+            {
+                for (let k = 0; k < result.length; k++) 
+                {
+                    if(this.tableOfGames[i][j] == result[k])
+                    {
+                        score++;
+                        break;
+                    }
+                }
+            } 
+            layoutResult += 'Game ' + (i + 1) + ': ' + score + ' points.\n';       
+        }
+        return layoutResult;
     }
 }
